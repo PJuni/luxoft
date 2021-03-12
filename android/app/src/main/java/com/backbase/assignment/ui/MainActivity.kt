@@ -10,10 +10,8 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonParser
 import java.net.URL
 
-
 class MainActivity : AppCompatActivity() {
 
-    private val baseUrl = "https://api.themoviedb.org/3"
     private val yourKey = ""
 
     private lateinit var moviesAdapter: MoviesAdapter
@@ -35,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun fetchMovies() {
         val jsonString =
-            URL("$baseUrl/movie/now_playing?language=en-US&page=undefined&api_key=$yourKey").readText()
+            URL("/movie/now_playing?language=en-US&page=undefined&api_key=$yourKey").readText()
         val jsonObject = JsonParser.parseString(jsonString).asJsonObject
         moviesAdapter.items = jsonObject["results"] as JsonArray
         moviesAdapter.notifyDataSetChanged()
