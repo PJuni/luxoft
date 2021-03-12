@@ -35,3 +35,11 @@ local.properties
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Android Studio
+/*/local.properties
+/*/out
+/*/*/build
+/*/*/production
+*~
+*.swp
