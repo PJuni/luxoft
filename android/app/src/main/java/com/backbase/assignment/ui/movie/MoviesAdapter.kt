@@ -9,11 +9,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.backbase.assignment.R
 import com.backbase.assignment.ui.custom.RatingView
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
 
-class MoviesAdapter(var items: JsonArray = JsonArray()) :
+class MoviesAdapter() :
     RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
+
+    private val items: List<Any> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -26,9 +26,9 @@ class MoviesAdapter(var items: JsonArray = JsonArray()) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(items[position] as JsonObject)
+        holder.bind(items[position])
 
-    override fun getItemCount() = items.size()
+    override fun getItemCount() = items.size
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         lateinit var poster: ImageView
@@ -36,15 +36,14 @@ class MoviesAdapter(var items: JsonArray = JsonArray()) :
         lateinit var releaseDate: TextView
         lateinit var rating: RatingView
 
-        fun bind(item: JsonObject) = with(itemView) {
+        fun bind(item: Any) = with(itemView) {
             poster = itemView.findViewById(R.id.poster)
-            poster.setImageURI(Uri.parse("https://image.tmdb.org/t/p/original/${item["poster_path"].asString}"))
 
             title = itemView.findViewById(R.id.title)
-            title.text = item["title"].asString
+            title.text = ""
 
             releaseDate = itemView.findViewById(R.id.releaseDate)
-            releaseDate.text = item["release_date"].asString
+            releaseDate.text = ""
         }
     }
 }

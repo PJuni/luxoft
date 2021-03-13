@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="Gradle: androidx.databinding:viewbinding:4.1.0@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8cd16146342d6067c7efc2bcb5b406fd/transformed/jetified-viewbinding-4.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d90899ab4c919ce376c0ccd17b41b6f4/transformed/jetified-viewbinding-4.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ba02567391afb788db6cc5c930a38ee8/transformed/jetified-viewbinding-4.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/1323532652164807d1d1e7bcb9ea4373/transformed/jetified-viewbinding-4.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/65dc28dca7348bb17865c9872e426f16/transformed/jetified-viewbinding-4.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a450f96902970d8ffb3c8b1f88e9230e/transformed/jetified-viewbinding-4.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f5d3c3143cb15ce0d0ed6c2d7846008a/transformed/jetified-viewbinding-4.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5cba29eb5ec419a383445a1cf2b3c9e2/transformed/jetified-viewbinding-4.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/111e18cc5c9e62040991041956c61444/transformed/jetified-viewbinding-4.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a67d55a7fa3c9341f5ba3b7695b9ebd8/transformed/jetified-viewbinding-4.1.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/a67d55a7fa3c9341f5ba3b7695b9ebd8/transformed/jetified-viewbinding-4.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a67d55a7fa3c9341f5ba3b7695b9ebd8/transformed/jetified-viewbinding-4.1.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.databinding/viewbinding/4.1.0/1e85adcc259d69f8bf39a13b86adb15f2630bd64/viewbinding-4.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
