@@ -12,11 +12,21 @@ android {
         versionName Releases.versionName
         testInstrumentationRunner TestLibraries.instrumentationRunner
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
     buildTypes {
         release {
-            minifyEnabled false
-            buildConfigField "String", "API_URL", baseUrl
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+        }
+
+        buildTypes.each {
+            it.buildConfigField "String", "API_URL", baseUrl
         }
     }
 }

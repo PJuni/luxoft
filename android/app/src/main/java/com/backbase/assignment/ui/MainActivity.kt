@@ -3,11 +3,10 @@ package com.backbase.assignment.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.backbase.assignment.R
+import com.backbase.assignment.databinding.ActivityMainBinding
 import com.backbase.assignment.ui.movie.MoviesAdapter
-import com.google.gson.JsonArray
-import com.google.gson.JsonParser
+import kotlinx.android.synthetic.main.activity_main.*
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
@@ -15,13 +14,13 @@ class MainActivity : AppCompatActivity() {
     private val yourKey = ""
 
     private lateinit var moviesAdapter: MoviesAdapter
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 

@@ -1,2 +1,2 @@
-include Modules.app
+include ":app"
 rootProject.name='CS Android Assignment'

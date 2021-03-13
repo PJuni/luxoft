@@ -14,7 +14,7 @@ object Releases {
 }
 
 object Versions {
-    val gradle = "3.5.0"
+    val gradle = "4.1.0"
     val kotlin = "1.4.10"
     val ktx = "1.3.2"
 
