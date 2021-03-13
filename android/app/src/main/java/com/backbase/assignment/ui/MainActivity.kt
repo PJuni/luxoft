@@ -11,7 +11,7 @@ import com.google.gson.JsonParser
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
-
+    
     private val yourKey = ""
 
     private lateinit var moviesAdapter: MoviesAdapter
