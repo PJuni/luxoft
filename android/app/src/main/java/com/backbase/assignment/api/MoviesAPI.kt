@@ -13,4 +13,9 @@ interface MoviesAPI {
     suspend fun getNowPlayingMovies(
         @Query(value = "page") pageNumber: Int
     ): Response<JsonObject>
+
+    @GET("movie/popular?language=en-US&api_key=${BuildConfig.API_KEY}")
+    suspend fun getPopularMovies(
+        @Query(value = "page") pageNumber: Int
+    ): Response<JsonObject>
 }

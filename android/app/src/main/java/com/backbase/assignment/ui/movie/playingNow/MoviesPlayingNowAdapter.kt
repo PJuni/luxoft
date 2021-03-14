@@ -1,11 +1,10 @@
-package com.backbase.assignment.ui.movie
+package com.backbase.assignment.ui.movie.playingNow
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.backbase.assignment.BuildConfig
@@ -14,7 +13,7 @@ import com.backbase.assignment.extensions.picassoLoad
 import com.backbase.assignment.extensions.setVisible
 
 
-class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
+class MoviesPlayingNowAdapter : RecyclerView.Adapter<MoviesPlayingNowAdapter.ViewHolder>() {
 
     private var items: List<String> = emptyList()
 
@@ -33,7 +32,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
     fun setData(movieImages: List<String>?) {
         movieImages ?: return
-        val diffResult = DiffUtil.calculateDiff(MovieImagesDiffCallback(items, movieImages))
+        val diffResult = DiffUtil.calculateDiff(MoviesPlayingNowDiffCallback(items, movieImages))
         diffResult.dispatchUpdatesTo(this)
         items = movieImages
     }
@@ -50,6 +49,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
                     progress.setVisible(false)
                 },
                 onError = {
+                    progress.setVisible(false)
                     image.setImageResource(R.drawable.vector_icon_error_24)
                 }
             )
