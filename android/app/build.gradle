@@ -27,7 +27,8 @@ android {
         }
 
         buildTypes.each {
-            it.buildConfigField "String", "API_URL", baseUrl
+            it.buildConfigField "String", "API_URL", apiUrl
+            it.buildConfigField "String", "API_KEY", apiKey
         }
     }
 }

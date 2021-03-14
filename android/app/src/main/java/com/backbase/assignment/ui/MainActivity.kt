@@ -3,12 +3,12 @@ package com.backbase.assignment.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.backbase.assignment.api.MoviesAPI
-import com.backbase.assignment.api.bodyOrException
-import com.backbase.assignment.api.safeCall
+import com.backbase.assignment.api.*
 import com.backbase.assignment.databinding.ActivityMainBinding
 import com.backbase.assignment.ui.movie.MoviesAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.launch
+import kotlinx.serialization.json.jsonArray
 import org.koin.android.ext.android.inject
 
 class MainActivity() : AppCompatActivity() {
@@ -27,13 +27,17 @@ class MainActivity() : AppCompatActivity() {
 
         recyclerView.adapter = moviesAdapter
 
-        fetchMovies()
+        lifecycleScope.launch {
+            fetchMovies()
+        }
+
     }
 
-    private fun fetchMovies() = lifecycleScope.launchWhenResumed {
-        val movies = safeCall {
-            moviesApi.getNowPlayingMovies(yourKey, 2).bodyOrException()
-        }
-        moviesAdapter.notifyDataSetChanged()
+    private suspend fun fetchMovies() = safeCall {
+        moviesApi.getNowPlayingMovies(2).bodyOrException()
+    }.doOnSuccess {
+        moviesAdapter.setData(it["results"]?.jsonArray)
+    }.doOnError {
+
     }
 }
