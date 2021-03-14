@@ -12,6 +12,8 @@ import com.backbase.assignment.BuildConfig
 import com.backbase.assignment.R
 import com.backbase.assignment.extensions.picassoLoad
 import com.backbase.assignment.extensions.setVisible
+import com.backbase.assignment.ui.custom.RatingView
+import kotlinx.android.synthetic.main.movie_item.view.*
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.jsonObject
@@ -47,7 +49,8 @@ class MoviesMostPopularAdapter : RecyclerView.Adapter<MoviesMostPopularAdapter.V
         private val image: ImageView = itemView.findViewById(R.id.poster)
         private val title: TextView = itemView.findViewById(R.id.title)
         private val releaseDate: TextView = itemView.findViewById(R.id.releaseDate)
-        private val rating: TextView = itemView.findViewById(R.id.rating)
+        private val rating: RatingView = itemView.findViewById(R.id.rating)
+        private val ratingText: TextView = itemView.findViewById(R.id.ratingText)
         private val progress: ProgressBar = itemView.findViewById(R.id.progress)
 
         fun bind(item: JsonElement) = with(itemView) {
@@ -58,7 +61,9 @@ class MoviesMostPopularAdapter : RecyclerView.Adapter<MoviesMostPopularAdapter.V
                     progress.setVisible(false)
                     title.text = item.jsonObject["original_title"]?.jsonPrimitive?.content
                     releaseDate.text = item.jsonObject["release_date"]?.jsonPrimitive?.content
-                    rating.text = (item.jsonObject["popularity"].toString().toDouble().roundToInt() / 100).toString()
+                    val ratingValue = (item.jsonObject["vote_average"].toString().toDouble() * 10).toInt()
+                    rating.updateProgress(ratingValue)
+                    ratingText.text = ratingValue.toString()
                 },
                 onError = {
                     progress.setVisible(false)

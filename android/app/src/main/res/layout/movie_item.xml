@@ -45,13 +45,23 @@
         app:layout_constraintTop_toBottomOf="@+id/title"
         tools:text="April 12, 2019" />
 
-    <TextView
+    <com.backbase.assignment.ui.custom.RatingView
         android:id="@+id/rating"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/ratingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/rating"
+        app:layout_constraintEnd_toEndOf="@id/rating"
+        app:layout_constraintStart_toStartOf="@id/rating"
+        app:layout_constraintTop_toTopOf="@id/rating"
         tools:text="24"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
