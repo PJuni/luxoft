@@ -28,6 +28,7 @@ android {
 
         buildTypes.each {
             it.buildConfigField "String", "API_URL", apiUrl
+            it.buildConfigField "String", "API_URL_IMAGES", apiUrlImages
             it.buildConfigField "String", "API_KEY", apiKey
         }
     }

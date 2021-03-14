@@ -1,12 +1,10 @@
 package com.backbase.assignment.ui.movie
 
 import androidx.recyclerview.widget.DiffUtil
-import kotlinx.serialization.json.JsonArray
-import kotlinx.serialization.json.jsonObject
 
-class MovieDiffCallback(
-    private val oldData: JsonArray,
-    private val newData: JsonArray
+class MovieImagesDiffCallback(
+    private val oldData: List<String>,
+    private val newData: List<String>
 ) : DiffUtil.Callback() {
 
     override fun getOldListSize() = oldData.size
@@ -16,7 +14,7 @@ class MovieDiffCallback(
     override fun areItemsTheSame(
         oldItemPosition: Int,
         newItemPosition: Int
-    ) = oldData[oldItemPosition].jsonObject["id"] === newData[newItemPosition].jsonObject["id"]
+    ) = oldData[oldItemPosition] === newData[newItemPosition]
 
     override fun areContentsTheSame(
         oldItemPosition: Int,
