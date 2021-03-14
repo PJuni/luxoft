@@ -6,8 +6,8 @@ import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.jsonObject
 
 class MoviesMostPopularDiffCallback(
-    private val oldData: JsonArray,
-    private val newData: JsonArray
+    private val oldData: List<JsonElement>,
+    private val newData: List<JsonElement>
 ) : DiffUtil.Callback() {
 
     override fun getOldListSize() = oldData.size

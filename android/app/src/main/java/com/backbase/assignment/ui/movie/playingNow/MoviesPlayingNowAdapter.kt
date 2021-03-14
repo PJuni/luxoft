@@ -15,7 +15,7 @@ import com.backbase.assignment.extensions.setVisible
 
 class MoviesPlayingNowAdapter : RecyclerView.Adapter<MoviesPlayingNowAdapter.ViewHolder>() {
 
-    private var items: List<String> = emptyList()
+    private val items = mutableListOf<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         LayoutInflater.from(parent.context).inflate(
@@ -34,7 +34,7 @@ class MoviesPlayingNowAdapter : RecyclerView.Adapter<MoviesPlayingNowAdapter.Vie
         movieImages ?: return
         val diffResult = DiffUtil.calculateDiff(MoviesPlayingNowDiffCallback(items, movieImages))
         diffResult.dispatchUpdatesTo(this)
-        items = movieImages
+        items.addAll(movieImages)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

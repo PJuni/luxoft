@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             moviesApi.getPopularMovies(mostPopularPage).bodyOrException()
         }.doOnSuccess { result ->
             Timber.i("Successfully fetched most popular movies: $result")
-            moviesMostPopularAdapter.setData(result["results"]?.jsonArray)
+            moviesMostPopularAdapter.setData(result["results"]?.jsonArray?.toList())
         }.doOnError {
             Timber.e(it, "Failed to fetch most popular movies.")
         }

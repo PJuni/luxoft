@@ -21,7 +21,7 @@ import kotlin.math.roundToInt
 
 class MoviesMostPopularAdapter : RecyclerView.Adapter<MoviesMostPopularAdapter.ViewHolder>() {
 
-    private var items: JsonArray = JsonArray(emptyList())
+    private val items = mutableListOf<JsonElement>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         LayoutInflater.from(parent.context).inflate(
@@ -36,11 +36,11 @@ class MoviesMostPopularAdapter : RecyclerView.Adapter<MoviesMostPopularAdapter.V
 
     override fun getItemCount() = items.size
 
-    fun setData(movies: JsonArray?) {
+    fun setData(movies: List<JsonElement>?) {
         movies ?: return
         val diffResult = DiffUtil.calculateDiff(MoviesMostPopularDiffCallback(items, movies))
         diffResult.dispatchUpdatesTo(this)
-        items = movies
+        items.addAll(movies)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
