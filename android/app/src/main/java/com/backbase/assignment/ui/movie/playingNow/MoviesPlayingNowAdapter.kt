@@ -32,8 +32,9 @@ class MoviesPlayingNowAdapter : RecyclerView.Adapter<MoviesPlayingNowAdapter.Vie
     fun setData(movieImages: List<String>?) {
         movieImages ?: return
         val diffResult = DiffUtil.calculateDiff(MoviesPlayingNowDiffCallback(items, movieImages))
-        diffResult.dispatchUpdatesTo(this)
+        items.clear()
         items.addAll(movieImages)
+        diffResult.dispatchUpdatesTo(this)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

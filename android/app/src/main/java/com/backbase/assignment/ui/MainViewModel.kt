@@ -18,7 +18,7 @@ class MainViewModel(
     private val genreRepository: GenreRepository,
 ) : ViewModel() {
 
-    fun getMoviesPlayingNow(page: Int) = liveData {
+    fun getMoviesPlayingNow(page: Int = FIRST_PAGE) = liveData {
         Timber.i("Fetching movies images.")
         moviesRepository
             .getPlayingNowMovies(page)
@@ -27,11 +27,11 @@ class MainViewModel(
                     it.jsonObject["poster_path"]?.jsonPrimitive?.content
                 }
                 Timber.i("Successfully fetched movies images: $movieImages")
-                emit(movieImages ?: emptyList<JsonObject>())
+                emit(movieImages ?: emptyList<String>())
             }
             .doOnError {
                 Timber.e(it, "Failed to fetch movies.")
-                emit(emptyList<JsonObject>())
+                emit(emptyList<String>())
             }
     }
 

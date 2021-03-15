@@ -23,9 +23,9 @@ val retrofitModule = module {
     single { get<Retrofit>().create(GenreAPI::class.java) }
 }
 
-private fun okHttpLogger() = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger() {
+private fun okHttpLogger() = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger {
     Timber.i(it)
-})
+}).setLevel(HttpLoggingInterceptor.Level.BODY)
 
 private fun okHttp() = OkHttpClient.Builder()
     .addInterceptor(okHttpLogger())
@@ -33,7 +33,7 @@ private fun okHttp() = OkHttpClient.Builder()
 
 @ExperimentalSerializationApi
 private fun retrofit() = Retrofit.Builder()
-    .callFactory(OkHttpClient.Builder().build())
+    .callFactory(okHttp())
     .baseUrl(BuildConfig.API_URL)
     .addConverterFactory(Json.asConverterFactory(contentType))
     .build()

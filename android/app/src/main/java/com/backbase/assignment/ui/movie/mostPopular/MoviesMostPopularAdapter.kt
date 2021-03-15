@@ -44,8 +44,10 @@ class MoviesMostPopularAdapter(
     fun setData(movies: List<JsonElement>?) {
         movies ?: return
         val diffResult = DiffUtil.calculateDiff(MoviesMostPopularDiffCallback(items, movies))
-        diffResult.dispatchUpdatesTo(this)
+
+        items.clear()
         items.addAll(movies)
+        diffResult.dispatchUpdatesTo(this)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

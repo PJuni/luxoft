@@ -7,26 +7,42 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.backbase.assignment.R
 
+enum class PaginationState {
+    IDLE,
+    LOADING,
+}
+private const val FIRST_PAGE = 1
 // quick custom pagination
-fun RecyclerView.addPagination(
-    onNextPage: (Int) -> Unit
-) = addOnScrollListener(object : RecyclerView.OnScrollListener() {
-    private var page = 1
-    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-        super.onScrolled(recyclerView, dx, dy)
-        val layoutManager =
-            (layoutManager as? LinearLayoutManager) ?: return
-        val visibleItemCount: Int = layoutManager.childCount
-        val totalItemCount: Int = layoutManager.itemCount
-        val firstVisibleItemPosition: Int = layoutManager.findFirstVisibleItemPosition()
-        if (visibleItemCount + firstVisibleItemPosition >= totalItemCount
-            && firstVisibleItemPosition >= 0
-        ) {
-            page++
-            onNextPage.invoke(page)
+class RecyclerViewPagination(private val recyclerView: RecyclerView) {
+
+    var paginationState = PaginationState.IDLE
+    var currentPage = FIRST_PAGE
+
+    fun addPagination(
+        onNextPage: (Int) -> Unit
+    ) = recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            val layoutManager =
+                (recyclerView.layoutManager as? LinearLayoutManager) ?: return
+            val visibleItemCount: Int = layoutManager.childCount
+            val totalItemCount: Int = layoutManager.itemCount
+            val firstVisibleItemPosition: Int = layoutManager.findFirstVisibleItemPosition()
+            if (paginationState != PaginationState.LOADING
+                && visibleItemCount + firstVisibleItemPosition >= totalItemCount
+                && firstVisibleItemPosition >= 0
+            ) {
+                updateState(PaginationState.LOADING)
+
+                onNextPage.invoke(++currentPage)
+            }
         }
+    })
+
+    fun updateState(state: PaginationState) {
+        paginationState = state
     }
-})
+}
 
 fun RecyclerView.applyDivider(context: Context) {
     ContextCompat.getDrawable(context, R.drawable.view_separator)?.let {

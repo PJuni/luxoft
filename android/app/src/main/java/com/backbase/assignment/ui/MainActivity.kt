@@ -2,38 +2,35 @@ package com.backbase.assignment.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import com.backbase.assignment.api.GenreAPI
-import com.backbase.assignment.api.MoviesAPI
-import com.backbase.assignment.api.response.bodyOrException
-import com.backbase.assignment.api.response.doOnError
-import com.backbase.assignment.api.response.doOnSuccess
-import com.backbase.assignment.api.response.safeCall
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.backbase.assignment.databinding.ActivityMainBinding
-import com.backbase.assignment.extensions.addPagination
+import com.backbase.assignment.extensions.PaginationState
+import com.backbase.assignment.extensions.RecyclerViewPagination
 import com.backbase.assignment.extensions.applyDivider
-import com.backbase.assignment.extensions.empty
+import com.backbase.assignment.extensions.reObserve
 import com.backbase.assignment.model.Genre
 import com.backbase.assignment.ui.custom.DialogMovieDetails
 import com.backbase.assignment.ui.movie.mostPopular.MoviesMostPopularAdapter
 import com.backbase.assignment.ui.movie.playingNow.MoviesPlayingNowAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.launch
-import kotlinx.serialization.json.int
-import kotlinx.serialization.json.jsonArray
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
-import org.koin.android.ext.android.inject
+import kotlinx.serialization.json.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
-    private val moviesApi: MoviesAPI by inject()
-    private val genreApi: GenreAPI by inject()
-    val mainViewModel: MainViewModel by viewModel()
+    private val mainViewModel: MainViewModel by viewModel()
 
     private var genres = emptyList<Genre>()
+
+    private val recyclerMoviesPopularPagination by lazy {
+        RecyclerViewPagination(recyclerViewMostPopular)
+    }
+
+    private val recyclerMoviesPlayingNowPagination by lazy {
+        RecyclerViewPagination(recyclerViewPlayingNow)
+    }
 
     private val moviesPlayingNowAdapter = MoviesPlayingNowAdapter()
     private val moviesMostPopularAdapter = MoviesMostPopularAdapter { item ->
@@ -55,26 +52,56 @@ class MainActivity : AppCompatActivity() {
         ).show(supportFragmentManager, javaClass.name)
     }
 
-    private lateinit var binding: ActivityMainBinding
+    private val moviesPlayingNowObserver: Observer<List<String>> by lazy {
+        Observer<List<String>> { movieImages ->
+            moviesPlayingNowAdapter.setData(movieImages)
+            recyclerMoviesPlayingNowPagination.updateState(PaginationState.IDLE)
+        }
+    }
 
+    private val moviesMostPopularObserver: Observer<List<JsonElement>> by lazy {
+        Observer<List<JsonElement>> { items ->
+            moviesMostPopularAdapter.setData(items)
+            recyclerMoviesPopularPagination.updateState(PaginationState.IDLE)
+        }
+    }
+
+    private val genresObserver: Observer<List<Genre>> by lazy {
+        Observer<List<Genre>> { genres ->
+            this.genres = genres
+        }
+    }
+
+    private lateinit var binding: ActivityMainBinding
+    fun <T> MutableLiveData<T>.forceRefresh() {
+        this.value = this.value
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initObservers()
+
         with(recyclerViewPlayingNow) {
             adapter = moviesPlayingNowAdapter
-            addPagination { page ->
+            recyclerMoviesPlayingNowPagination.addPagination { page ->
+                mainViewModel.getMoviesPlayingNow(page).reObserve(this@MainActivity, moviesPlayingNowObserver)
             }
         }
 
         with(recyclerViewMostPopular) {
             adapter = moviesMostPopularAdapter
-            addPagination { page ->
+            recyclerMoviesPopularPagination.addPagination { page ->
+                mainViewModel.getMoviesMostPopular(page).reObserve(this@MainActivity, moviesMostPopularObserver)
             }
             applyDivider(this@MainActivity)
         }
     }
 
-
+    private fun initObservers() {
+        mainViewModel.getMoviesPlayingNow().reObserve(this, moviesPlayingNowObserver)
+        mainViewModel.getMoviesMostPopular().reObserve(this, moviesMostPopularObserver)
+        mainViewModel.getGenres().reObserve(this, genresObserver)
+    }
 }
