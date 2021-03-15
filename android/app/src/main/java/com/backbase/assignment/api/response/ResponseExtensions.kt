@@ -1,4 +1,4 @@
-package com.backbase.assignment.api
+package com.backbase.assignment.api.response
 
 import com.backbase.assignment.api.error.ApiException
 import retrofit2.Response

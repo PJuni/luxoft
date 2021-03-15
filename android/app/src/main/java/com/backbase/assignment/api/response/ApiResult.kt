@@ -1,14 +1,7 @@
-package com.backbase.assignment.api
+package com.backbase.assignment.api.response
 
 import com.backbase.assignment.api.error.ApiError
 import com.backbase.assignment.api.error.toApiError
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.channels.ProducerScope
-import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
 
 sealed class ApiResult<out T> {
 

@@ -16,8 +16,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageMovieItemPlayingNow"
-        android:layout_width="100dp"
-        android:layout_height="160dp"
+        android:layout_width="@dimen/item_playing_now_width"
+        android:layout_height="@dimen/item_playing_now_height"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
         app:layout_constraintStart_toStartOf="parent"

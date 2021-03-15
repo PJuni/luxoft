@@ -12,7 +12,6 @@ import com.backbase.assignment.R
 import com.backbase.assignment.extensions.picassoLoad
 import com.backbase.assignment.extensions.setVisible
 
-
 class MoviesPlayingNowAdapter : RecyclerView.Adapter<MoviesPlayingNowAdapter.ViewHolder>() {
 
     private val items = mutableListOf<String>()

@@ -1,6 +1,7 @@
 package com.backbase.assignment.di
 
 import com.backbase.assignment.BuildConfig
+import com.backbase.assignment.api.GenreAPI
 import com.backbase.assignment.api.MoviesAPI
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -16,17 +17,10 @@ val contentType = "application/json".toMediaType()
 
 @ExperimentalSerializationApi
 val retrofitModule = module {
-    single {
-        okHttp()
-    }
-
-    single {
-        retrofit()
-    }
-
-    single {
-        get<Retrofit>().create(MoviesAPI::class.java)
-    }
+    single { okHttp() }
+    single { retrofit() }
+    single { get<Retrofit>().create(MoviesAPI::class.java) }
+    single { get<Retrofit>().create(GenreAPI::class.java) }
 }
 
 private fun okHttpLogger() = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger() {

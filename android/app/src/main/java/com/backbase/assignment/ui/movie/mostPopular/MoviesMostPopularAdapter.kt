@@ -12,26 +12,29 @@ import com.backbase.assignment.BuildConfig
 import com.backbase.assignment.R
 import com.backbase.assignment.extensions.picassoLoad
 import com.backbase.assignment.extensions.setVisible
+import com.backbase.assignment.ui.base.ItemClickedListener
 import com.backbase.assignment.ui.custom.RatingView
-import kotlinx.android.synthetic.main.movie_item.view.*
-import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
-import kotlin.math.roundToInt
 
-
-class MoviesMostPopularAdapter : RecyclerView.Adapter<MoviesMostPopularAdapter.ViewHolder>() {
+class MoviesMostPopularAdapter(
+    private val itemClickedListener: ItemClickedListener<JsonElement>
+) : RecyclerView.Adapter<MoviesMostPopularAdapter.ViewHolder>() {
 
     private val items = mutableListOf<JsonElement>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         LayoutInflater.from(parent.context).inflate(
-            R.layout.movie_item,
+            R.layout.movie_item_popular,
             parent,
             false
         )
-    )
+    ).apply {
+        itemView.setOnClickListener {
+            itemClickedListener.itemClicked(items[adapterPosition])
+        }
+    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(items[position])
@@ -54,7 +57,8 @@ class MoviesMostPopularAdapter : RecyclerView.Adapter<MoviesMostPopularAdapter.V
         private val progress: ProgressBar = itemView.findViewById(R.id.progress)
 
         fun bind(item: JsonElement) = with(itemView) {
-            val imageFullPath = BuildConfig.API_URL_IMAGES + item.jsonObject["poster_path"]?.jsonPrimitive?.content
+            val imageFullPath =
+                BuildConfig.API_URL_IMAGES + item.jsonObject["poster_path"]?.jsonPrimitive?.content
             image.picassoLoad(
                 imageFullPath,
                 onSuccess = {
