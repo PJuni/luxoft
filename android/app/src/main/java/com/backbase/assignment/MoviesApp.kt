@@ -1,8 +1,7 @@
 package com.backbase.assignment
 
 import android.app.Application
-import com.backbase.assignment.di.picassoModule
-import com.backbase.assignment.di.retrofitModule
+import com.backbase.assignment.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -20,7 +19,15 @@ class MoviesApp : Application() {
     private fun initializeKoin() = startKoin {
         androidContext(this@MoviesApp)
         androidLogger()
-        modules(listOf(retrofitModule, picassoModule))
+        modules(
+            listOf(
+                retrofitModule,
+                moviesRepositoryModule,
+                genreRepositoryModule,
+                picassoModule,
+                viewModelModule
+            )
+        )
     }
 
     private fun initializeDebugTools() {

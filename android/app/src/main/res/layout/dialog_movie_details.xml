@@ -6,6 +6,7 @@
     android:background="@color/colorPrimaryDark_80"
     android:layout_height="match_parent">
 
+<!-- did cancel behaviour since its a card popup not navigation transition -->
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageMovieDetailsBack"
         android:layout_width="wrap_content"

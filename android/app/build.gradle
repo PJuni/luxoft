@@ -39,6 +39,7 @@ dependencies {
     implementation Libraries.kotlin
     implementation Libraries.kotlinCoroutines
     implementation Libraries.lifecycle
+    implementation Libraries.lifecycleLiveData
     implementation Libraries.ktx
 
     implementation Libraries.retrofit
@@ -49,6 +50,7 @@ dependencies {
     implementation Libraries.okhttpLogger
     implementation Libraries.koin
     implementation Libraries.koinAndroid
+    implementation Libraries.koinViewModel
     implementation Libraries.timber
     implementation Libraries.picasso
 

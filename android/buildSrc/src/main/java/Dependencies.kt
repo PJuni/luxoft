@@ -49,9 +49,11 @@ object Libraries {
     val kotlinCoroutines =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
     val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
+    val lifecycleLiveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
 
     val koin = "org.koin:koin-core:${Versions.koin}"
     val koinAndroid = "org.koin:koin-android:${Versions.koin}"
+    val koinViewModel = "org.koin:koin-android-viewmodel:${Versions.koin}"
     val ktx = "androidx.core:core-ktx:${Versions.ktx}"
     val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
