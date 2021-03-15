@@ -62,4 +62,6 @@ dependencies {
     testImplementation TestLibraries.koin
     testImplementation TestLibraries.junit
     testImplementation TestLibraries.runner
+    testImplementation TestLibraries.kotlinCoroutines
+    testImplementation TestLibraries.mockk
 }

@@ -38,6 +38,7 @@ object Versions {
 
     val junit = "4.13"
     val runner = "1.3.0"
+    val mockk = "1.9.3"
 
     val compileSdk = 28
     val minSdk = 23
@@ -77,4 +78,6 @@ object TestLibraries {
     val koin = "org.koin:koin-test:${Versions.koin}"
     val junit = "junit:junit:${Versions.junit}"
     val runner = "androidx.test:runner:${Versions.runner}"
+    val mockk = "io.mockk:mockk:${Versions.mockk}"
+    val kotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinCoroutines}"
 }
