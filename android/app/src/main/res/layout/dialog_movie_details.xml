@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/colorPrimaryDark_80"
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -13,13 +14,15 @@
         android:layout_marginTop="@dimen/margin_28"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/vector_icon_close_24" />
+        app:srcCompat="@drawable/vector_icon_close_24"
+        app:tint="@color/silver" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageMovieDetails"
-        android:layout_width="135dp"
-        android:layout_height="200dp"
+        android:layout_width="@dimen/dialog_movie_details_image_width"
+        android:layout_height="@dimen/dialog_movie_details_image_height"
         android:layout_marginTop="@dimen/margin_24"
+        android:background="@drawable/view_image_boarder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageMovieDetailsBack"

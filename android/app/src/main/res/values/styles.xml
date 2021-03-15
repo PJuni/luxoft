@@ -7,4 +7,13 @@
         <!-- Global text color since every screen has silver texts -->
         <item name="android:textColor">@color/silver</item>
     </style>
+
+    <style name="TextListHeader" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:paddingStart">@dimen/margin_20</item>
+        <item name="android:paddingTop">@dimen/margin_4</item>
+        <item name="android:paddingBottom">@dimen/margin_4</item>
+    </style>
 </resources>

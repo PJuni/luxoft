@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Moviebox</string>
 
+    <string name="rating_text_percentage">%d\%%</string>
+
     <string name="dialog_movie_details_overview">Overview</string>
+
+    <string name="main_playing_now">Playing now</string>
+    <string name="main_most_popular">Most popular</string>
 
 </resources>

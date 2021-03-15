@@ -1,4 +1,4 @@
-package com.backbase.assignment.ui
+package com.backbase.assignment.ui.custom
 
 import android.app.Dialog
 import android.graphics.Color
@@ -61,13 +61,12 @@ class DialogMovieDetails : DialogFragment() {
         }
     }
 
-    private fun setWindowParams() {
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog?.window?.setLayout(
+    private fun setWindowParams() = dialog?.window?.apply {
+        setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        setLayout(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.MATCH_PARENT
         )
-
     }
 
     companion object {

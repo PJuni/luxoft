@@ -64,10 +64,13 @@ class MoviesMostPopularAdapter(
                 onSuccess = {
                     progress.setVisible(false)
                     title.text = item.jsonObject["original_title"]?.jsonPrimitive?.content
+
+                    // cannot see timestamp field, so not sure if I should parse string to date,
+                    // and then again date to desired string format ? Hope not
                     releaseDate.text = item.jsonObject["release_date"]?.jsonPrimitive?.content
                     val ratingValue = (item.jsonObject["vote_average"].toString().toDouble() * 10).toInt()
                     rating.updateProgress(ratingValue)
-                    ratingText.text = ratingValue.toString()
+                    ratingText.text = context.getString(R.string.rating_text_percentage, ratingValue)
                 },
                 onError = {
                     progress.setVisible(false)

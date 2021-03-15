@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="margin_4">4dp</dimen>
     <dimen name="margin_8">8dp</dimen>
     <dimen name="margin_16">16dp</dimen>
     <dimen name="margin_20">20dp</dimen>
@@ -14,8 +15,11 @@
     <dimen name="item_playing_now_width">100dp</dimen>
     <dimen name="item_playing_now_height">160dp</dimen>
 
-    <dimen name="item_popular_rating_size">32dp</dimen>
+    <dimen name="item_popular_rating_size">36dp</dimen>
     <dimen name="item_popular_poster_width">42dp</dimen>
     <dimen name="item_popular_poster_height">64dp</dimen>
     <dimen name="item_popular_separator_height">4dp</dimen>
+
+    <dimen name="dialog_movie_details_image_width">135dp</dimen>
+    <dimen name="dialog_movie_details_image_height">200dp</dimen>
 </resources>

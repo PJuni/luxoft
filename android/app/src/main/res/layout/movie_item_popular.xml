@@ -16,13 +16,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/poster"
         android:layout_width="@dimen/item_popular_poster_width"
         android:layout_height="@dimen/item_popular_poster_height"
         android:layout_marginStart="@dimen/margin_16"
-        android:layout_marginTop="@dimen/margin_16"
-        android:layout_marginBottom="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_8"
+        android:layout_marginBottom="@dimen/margin_8"
+        android:background="@drawable/view_image_boarder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,9 +31,11 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_16"
+        app:layout_constraintEnd_toStartOf="@+id/rating"
         app:layout_constraintStart_toEndOf="@+id/poster"
         app:layout_constraintTop_toTopOf="@+id/poster"
         tools:text="Title" />

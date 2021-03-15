@@ -24,23 +24,30 @@ class RatingView @JvmOverloads constructor(
     private var progress = MIN_PROGRESS
     private val finishedOuterRect = RectF()
 
-    private val finishedPaint: Paint = Paint().apply {
+    private val averagePaint: Paint = Paint().apply {
         color = context.getColor(R.color.colorAccent)
         style = Paint.Style.STROKE
         isAntiAlias = true
         strokeWidth = finishedStrokeWidth
     }
 
+    private val goodPaint: Paint = Paint().apply {
+        color = context.getColor(R.color.conifer)
+        style = Paint.Style.STROKE
+        isAntiAlias = true
+        strokeWidth = finishedStrokeWidth
+    }
+
+    private var drawPaint: Paint = averagePaint
+
     fun updateProgress(progress: Int) {
         createAnimationAndUpdate(progress)
     }
 
-    fun reset() {
-        progress = MIN_PROGRESS
-    }
-
     private fun createAnimationAndUpdate(newProgress: Int) {
         val progressDuration = getProgressDuration(newProgress)
+
+        drawPaint = if (newProgress >= GOOD_PROGRESS) goodPaint else averagePaint
 
         ValueAnimator.ofInt(this.progress, newProgress).apply {
             duration = progressDuration.toLong()
@@ -72,7 +79,7 @@ class RatingView @JvmOverloads constructor(
             startingDegree.toFloat(),
             getProgressAngle(),
             false,
-            finishedPaint
+            drawPaint
         )
     }
 
@@ -105,5 +112,6 @@ class RatingView @JvmOverloads constructor(
         private const val FINISHED_STROKE_WIDTH = 4f
         private const val UNFINISHED_STROKE_WIDTH = 1f
         private const val MIN_SIZE = 260
+        private const val GOOD_PROGRESS = 50
     }
 }
