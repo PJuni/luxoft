@@ -8,10 +8,11 @@ class MoviesRepositoryImpl(
     private val moviesAPI: MoviesAPI
 ) : MoviesRepository {
 
-    override suspend fun getMostPopularMovies(page: Int) = safeCall{
+    override suspend fun getMostPopularMovies(page: Int) = safeCall {
         moviesAPI.getPopularMovies(page).bodyOrException()
     }
-    override suspend fun getPlayingNowMovies(page: Int) = safeCall{
+
+    override suspend fun getPlayingNowMovies(page: Int) = safeCall {
         moviesAPI.getNowPlayingMovies(page).bodyOrException()
     }
 }
